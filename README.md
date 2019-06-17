@@ -1,13 +1,16 @@
 # CentOS 7更换国内源
 
-# 使用方法
+## 背景说明
+CentOS做为国内服务器生产环境使用的较多，但系统默认自带官方安装源，管理员在安装软件包时有可能下载慢，为了解决此类问题，现整合了Base和EPEL的阿里源，清华源，科大源，下载Base和EPEL的源文件后，即可连接以上国内服务器下载安装软件包，为您的安装快马加鞭！
+
+## 使用方法
 
 ```shell
 # 启动一个CentOS7容器，换源动作在容器中进行，不污染外部环境
 docker run -it centos:7 bash
 
 # 打开YUM缓存，打开后会把相关的软件包存放在类似以下包下 
-# 【  /var/cache/yum/$basearch/$releasever/base/packages】
+# 【/var/cache/yum/$basearch/$releasever/base/packages】
 # 如：/var/cache/yum/x86_64/7/base/packages/logrotate-3.8.6-17.el7.x86_64.rpm
 # 如：/var/cache/yum/x86_64/7/epel/packages/redis-3.2.12-2.el7.x86_64.rpm
 sed -i 's/keepcache=0/keepcache=1/g' /etc/yum.conf
